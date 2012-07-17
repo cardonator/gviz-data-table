@@ -206,7 +206,8 @@ class Table(object):
 
         Rows are either sequences of values or sequences of (value, label) tuples
         """
-        assert len(row) == len(self.schema), "Row length does not match number of columns"
+        assert len(row) == len(self.schema), \
+               "Row length does not match number of columns"
         self.rows.append(self._append(row))
 
     def extend(self, rows):
@@ -219,7 +220,6 @@ class Table(object):
         rows = [{"c":r.values()} for r in self.rows]
         cols = self.schema.values()
         js = ['cols', 'rows', 'rows']
-        #mapping = [('cols', cols), ('rows', rows), ('options', self.options)]
         for k, v in zip(js, [cols, rows, self.options]):
             if v is not None:
                 yield k, v
