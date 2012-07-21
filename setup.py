@@ -6,10 +6,7 @@
 
 __author__ = "Charlie Clark"
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
 import sys
 
 requires = []
@@ -18,9 +15,8 @@ if major == 2 and minor < 6:
     requires.append('simplejson')
 
 extra = dict(
-    setup_requires=requires + ['setuptools'],
-    tests_requires=requires + ['nose', 'coverage'],
-    doc_requires=requires + ['sphinx', 'repoze.sphinx.autointerface']
+    testing=requires + ['nose', 'coverage'],
+    docs=requires + ['sphinx', 'repoze.sphinx.autointerface']
     )
 
 setup(
@@ -32,7 +28,7 @@ setup(
 """.strip(),
     author=__author__,
     license="BSD",
-    py_modules=["data_table/data_table"],
+    packages = find_packages(),
     test_suite = 'data_table',
-    **extra
+    extra_requires = extra
 )
