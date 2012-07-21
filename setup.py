@@ -20,7 +20,7 @@ extra = dict(
     )
 
 setup(
-    name="data-table",
+    name="gviz_data_table",
     version="0.9.0",
     description="Python API for Google Visualization",
     long_description="""
