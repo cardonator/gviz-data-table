@@ -29,6 +29,6 @@ setup(
     author=__author__,
     license="BSD",
     packages = find_packages(),
-    test_suite = 'data_table',
+    test_suite = 'gviz_data_table',
     extra_requires = extra
 )
