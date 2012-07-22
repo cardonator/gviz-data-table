@@ -89,8 +89,8 @@ class Cell(object):
                 yield key, value
 
 
-valid_types = {str:'string', unicode:'str', int:'number', float:'number', bool:'boolean',
-               datetime.date:'date', datetime.datetime:'datetime',
+valid_types = {str:'string', unicode:'string', int:'number', float:'number',
+               bool:'boolean', datetime.date:'date', datetime.datetime:'datetime',
                datetime.time:'timeofday'}
 
 
