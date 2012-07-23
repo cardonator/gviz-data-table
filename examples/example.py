@@ -10,14 +10,17 @@ def data():
     db = sqlite3.connect(os.path.join(folder, "sample.db"))
     c = db.cursor()
     c.execute("SELECT name, salary FROM employees")
-    cols = [dict(id=col[0].capitalize(), type=col[1]) for col in c.description]
+    cols = [dict(id=col[0], label=col[0].capitalize(), type=col[1])
+            for col in c.description]
     # sqlite3 unfortunately does not provide type information
     cols[0]['type'] = unicode
     cols[1]['type'] = float
 
     t = Table(cols)
     for r in c.fetchall():
-        t.append(r)
+        name, value = r
+        label = "${0}".format(value)
+        t.append([name, (value, label)])
 
     encoder = DataTableEncoder()
     return encoder.encode(t)
@@ -34,16 +37,26 @@ template = Template("""
 <script>
       google.load("visualization", "1", {packages:["corechart", "table"]});
 
+      var data = $data
 
       google.setOnLoadCallback(drawChart);
       function drawChart() {
 
-      var data = new google.visualization.DataTable($data);
-      var chart = new google.visualization.BarChart(document.getElementById('chart'));
-      chart.draw(data);
+      var chart_data = new google.visualization.DataTable(data);
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+      chart.draw(chart_data);
+      }
+
+      google.setOnLoadCallback(drawTable);
+      function drawTable () {
+      var table_data = new google.visualization.DataTable(data);
+      var table = new google.visualization.Table(document.getElementById('table'));
+      table.draw(table_data);
       }
 </script>
+
 <div id="chart"></div>
+<div id="table"></div>
 
 </body>
 
