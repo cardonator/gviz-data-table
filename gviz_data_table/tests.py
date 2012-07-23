@@ -121,6 +121,22 @@ class TestTable(TestCase):
         self.assertEqual(row['name'].value, 'Harry')
         self.assertEqual(row['name'].label, 'Big Man')
 
+    def test_cell_options(self):
+        Table = self.make_one()
+        table = Table(self.valid_schema)
+
+        jack = [17, ('Jack', 'Beanstalk', dict(key='value'))]
+        table.append(jack)
+        row = table.rows.pop()
+        self.assertEqual(row['name'].options, {'key':'value'})
+
+        kate = [26, dict(value='Kate', options={'hair':'long'})]
+        table.append(kate)
+        row = table.rows.pop()
+        self.assertEqual(row['name'].value, 'Kate')
+        self.assertEqual(row['name'].label, None)
+        self.assertEqual(row['name'].options, {'hair':'long'})
+
     def test_insert_rows(self):
         Table = self.make_one()
         table = Table(self.valid_schema)

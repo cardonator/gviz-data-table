@@ -193,18 +193,28 @@ class Table(object):
         """
         cols = self.schema.values()
         cells = OrderedDict()
+        attrs = ("value", "label", "options")
         for col, value in zip(cols, row):
-            label = None
-            typ = col.type
+            d = dict(value=value)
             if isinstance(value, tuple):
-                value, label = value
-            cells[col.id] = Cell(value, typ, label)
+                d.update(dict(zip(attrs, value)))
+            elif isinstance(value, dict):
+                d.update(value)
+            d['typ'] = col.type
+            print d
+            cells[col.id] = Cell(**d)
         return cells
 
     def append(self, row):
-        """Add a row.
+        """
+        Add a row.
 
-        Rows are either sequences of values or sequences of (value, label) tuples
+        Rows are either sequences of values,
+        or sequences of (value, label, options) tuples,
+        or sequences of cell dictionaries.
+        Dictionaries are the most flexible but also the most verbose.
+        Tuples do not have to be complete but will be exhausted in order, i.e.
+        you can't have just a value and options.
         """
         assert len(row) == len(self.schema), \
                "Row length does not match number of columns"
