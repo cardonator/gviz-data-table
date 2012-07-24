@@ -201,7 +201,6 @@ class Table(object):
             elif isinstance(value, dict):
                 d.update(value)
             d['typ'] = col.type
-            print d
             cells[col.id] = Cell(**d)
         return cells
 
