@@ -46,15 +46,17 @@ class Table(object):
         """
         cols = self.schema.values()
         cells = OrderedDict()
-        attrs = ("value", "label", "options")
         for col, value in zip(cols, row):
-            d = dict(value=value)
             if isinstance(value, tuple):
-                d.update(dict(zip(attrs, value)))
+                args = list(value)
+                args.insert(1, col.type)
+                cell = Cell(*args)
             elif isinstance(value, dict):
-                d.update(value)
-            d['typ'] = col.type
-            cells[col.id] = Cell(**d)
+                value['typ'] = col.type
+                cell = Cell(**value)
+            else:
+                cell = Cell(value, col.type)
+            cells[col.id] = cell
         return cells
 
     def append(self, row):
