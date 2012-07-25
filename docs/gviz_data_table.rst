@@ -40,11 +40,3 @@ gviz_data_table Package
     :members:
     :undoc-members:
     :show-inheritance:
-
-Subpackages
------------
-
-.. toctree::
-
-    gviz_data_table.tests
-
