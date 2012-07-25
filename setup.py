@@ -30,7 +30,7 @@ setup(
     license="BSD",
     packages = find_packages(),
     install_requires=requires,
-    tests_requires=requires,
+    tests_require=requires,
     test_suite = 'gviz_data_table',
     extras_require = extra
 )
