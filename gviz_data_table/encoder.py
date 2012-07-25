@@ -34,3 +34,5 @@ class Encoder(json.JSONEncoder):
             return [obj.hour, obj.minute, obj.second]
 
         return json.JSONEncoder.default(self, obj)
+
+encoder = Encoder()

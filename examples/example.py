@@ -2,7 +2,7 @@ import os
 import sqlite3
 from string import Template
 
-from gviz_data_table import Table, Encoder
+from gviz_data_table import Table, encoder
 
 
 def data():
@@ -22,7 +22,6 @@ def data():
         label = "${0}".format(value)
         t.append([name, (value, label)])
 
-    encoder = Encoder()
     return encoder.encode(t)
 
 
