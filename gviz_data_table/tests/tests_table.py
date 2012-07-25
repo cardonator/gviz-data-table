@@ -122,6 +122,6 @@ class TestTable(TestCase):
 
     def test_dictionary_interface(self):
         Table = self.make_one()
-        table = Table()
-        expected = dict(rows=[], cols=[])
+        table = Table(options={'foo':'bar'})
+        expected = dict(rows=[], cols=[], p={'foo':'bar'})
         self.assertEqual(dict(table), expected)

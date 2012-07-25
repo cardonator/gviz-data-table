@@ -81,7 +81,7 @@ class Table(object):
         """Dictionary interface for JSON encoding"""
         rows = [{"c":r.values()} for r in self.rows]
         cols = self.schema.values()
-        js = ['cols', 'rows', 'rows']
+        js = ['cols', 'rows', 'p']
         for k, v in zip(js, [cols, rows, self.options]):
             if v is not None:
                 yield k, v
