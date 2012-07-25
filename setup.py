@@ -29,6 +29,8 @@ setup(
     author=__author__,
     license="BSD",
     packages = find_packages(),
+    install_requires=requires,
+    test_requires=requires,
     test_suite = 'gviz_data_table',
-    extra_requires = extra
+    extra_require = extra
 )
