@@ -40,6 +40,18 @@ class Table(object):
         if len(self.rows):
             raise ValueError("Cannot add columns to tables already containing data")
 
+    @property
+    def options(self):
+        return self._options
+
+    @options.setter
+    def options(self, options):
+        """
+        Ensure that options are a dictionary
+        """
+        assert isinstance(options, dict) or options is None, "Options must be a dictionary"
+        self._options = options
+
     def _append(self, row):
         """
         Convert incoming data into table cells

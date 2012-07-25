@@ -26,13 +26,33 @@ class TestTable(TestCase):
         self.assertEqual(table.schema.keys(), [])
         self.assertEqual(table.rows, [])
 
+    def test_invalid_options(self):
+        Table = self.make_one()
+        table = Table()
+        self.assertRaises(
+            AssertionError,
+            table.options,
+            1
+        )
+        self.assertRaises(
+            AssertionError,
+            table.options,
+            [1, 2, 3]
+        )
+
+    def test_options(self):
+        Table = self.make_one()
+        table = Table()
+        table.options = dict(bar='baz')
+        self.assertEqual(table.options, {'bar':'baz'})
+
     def test_missing_id(self):
         Table = self.make_one()
         self.assertRaises(
             TypeError,
             Table,
             self.schema_missing_id
-            )
+        )
 
     def test_duplicate_column(self):
         Table = self.make_one()
