@@ -34,6 +34,27 @@ class TestCell(TestCase):
         c = Cell(int, 1, "Birthday")
         self.assertEqual(c.label, "Birthday")
 
+    def test_invalid_options(self):
+        Cell = self.make_one()
+        c = Cell(int, 1)
+        self.assertRaises(
+            AssertionError,
+            c.options,
+            1
+        )
+        self.assertRaises(
+            AssertionError,
+            c.options,
+            [1, 2, 3]
+        )
+
+    def test_options(self):
+        Cell = self.make_one()
+        c = Cell(int, 1)
+        c.options = dict(foo='bar')
+        self.assertEqual(c.options, {'foo':'bar'})
+
+
     def test_dictionary_interface(self):
         Cell = self.make_one()
         c = Cell(int, 1, "Number", {'foo':'bar'})

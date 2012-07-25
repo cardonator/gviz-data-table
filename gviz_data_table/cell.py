@@ -9,7 +9,7 @@ class Cell(object):
     {'value':'v, 'label':'f', 'options':'p'}
     """
 
-    __slots__ = ['type', '_value', 'label', 'options']
+    __slots__ = ['type', '_value', 'label', '_options']
 
     def __init__(self, typ, value, label=None, options=None):
         self.type = typ
@@ -35,6 +35,15 @@ class Cell(object):
         if not isinstance(value, self.type):
             raise ValueError("{0} expected, {1} received".format(self.type,
                                                                  type(value)))
+
+    @property
+    def options(self):
+        return self._options
+
+    @options.setter
+    def options(self, value):
+        assert isinstance(value, dict) or value is None, "Options must be a dictionary"
+        self._options = value
 
     def __iter__(self):
         """Dictionary interface for JSON encoding"""
