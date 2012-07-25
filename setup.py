@@ -27,7 +27,9 @@ setup(
     Date Table maps Python objects to the Google Visualization API
 """.strip(),
     author=__author__,
+    author_email='charlie.clark@clark-consulting.eu',
     license="BSD",
+    url="https://bitbucket.org/charlie_x/gviz-data-table",
     packages = find_packages(),
     install_requires=requires,
     tests_require=requires,
