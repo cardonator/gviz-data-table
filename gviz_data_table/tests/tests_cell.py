@@ -33,3 +33,9 @@ class TestCell(TestCase):
         self.assertFalse(c.label)
         c = Cell(int, 1, "Birthday")
         self.assertEqual(c.label, "Birthday")
+
+    def test_dictionary_interface(self):
+        Cell = self.make_one()
+        c = Cell(int, 1, "Number", {'foo':'bar'})
+        expected = dict(v=1, f="Number", p={'foo':'bar'})
+        self.assertEqual(dict(c), expected)
