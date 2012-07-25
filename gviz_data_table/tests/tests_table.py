@@ -119,3 +119,9 @@ class TestTable(TestCase):
                           table.append,
                           [1, 2, 3]
                           )
+
+    def test_dictionary_interface(self):
+        Table = self.make_one()
+        table = Table()
+        expected = dict(rows=[], cols=[])
+        self.assertEqual(dict(table), expected)
