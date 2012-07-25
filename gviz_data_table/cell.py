@@ -11,7 +11,7 @@ class Cell(object):
 
     __slots__ = ['type', '_value', 'label', 'options']
 
-    def __init__(self, value, typ, label=None, options=None):
+    def __init__(self, typ, value, label=None, options=None):
         self.type = typ
         self.label = label
         self.value = value

@@ -9,27 +9,27 @@ class TestCell(TestCase):
 
     def test_valid_data(self):
         Cell = self.make_one()
-        c = Cell(1, int)
+        c = Cell(int, 1)
         self.assertEqual(c.value, 1)
         self.assertEqual(c.type, int)
-        c = Cell('a', str)
+        c = Cell(str, 'a')
         self.assertEqual(c.value, "a")
         self.assertEqual(c.type, str)
 
     def test_empty_cell(self):
         Cell = self.make_one()
-        c = Cell(None, int)
+        c = Cell(int, None)
         self.assertFalse(c.value)
 
     def test_invalid_data(self):
         Cell = self.make_one()
         self.assertRaises(ValueError,
                           Cell,
-                          1, str)
+                          str, 1)
 
     def test_label(self):
         Cell = self.make_one()
-        c = Cell(1, int)
+        c = Cell(int, 1)
         self.assertFalse(c.label)
-        c = Cell(1, int, "Birthday")
+        c = Cell(int, 1, "Birthday")
         self.assertEqual(c.label, "Birthday")

@@ -31,7 +31,7 @@ class TestEncoder(TestCase):
 
     def test_encode_cell(self):
         from gviz_data_table.cell import Cell
-        c = Cell(1, int)
+        c = Cell(int, 1)
         encoder = self.make_one()
         js = encoder().encode(c)
         python = json.loads(js)

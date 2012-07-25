@@ -48,14 +48,12 @@ class Table(object):
         cells = OrderedDict()
         for col, value in zip(cols, row):
             if isinstance(value, tuple):
-                args = list(value)
-                args.insert(1, col.type)
-                cell = Cell(*args)
+                cell = Cell(*(col.type,) + value)
             elif isinstance(value, dict):
                 value['typ'] = col.type
                 cell = Cell(**value)
             else:
-                cell = Cell(value, col.type)
+                cell = Cell(col.type, value)
             cells[col.id] = cell
         return cells
 
