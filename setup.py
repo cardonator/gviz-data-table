@@ -21,7 +21,7 @@ extra = dict(
 
 setup(
     name="gviz_data_table",
-    version="0.9.0",
+    version="0.9.1",
     description="Python API for Google Visualization",
     long_description="""
     Date Table maps Python objects to the Google Visualization API
