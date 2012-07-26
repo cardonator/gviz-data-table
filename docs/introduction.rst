@@ -56,7 +56,7 @@ Bob       80
 
 This could be coded in Gviz Data Table like this:
 
-   .. code-block:: python
+   .. testcode::
 
       from gviz_data_table import Table
 
