@@ -73,3 +73,6 @@ This can be encoded into JSON using the encoder:
       from gviz_data_table import encoder
 
       encoder.encode(table)
+
+Complete documentation including the API at
+http://gviz-data-table.readthedocs.org/en/latest/
