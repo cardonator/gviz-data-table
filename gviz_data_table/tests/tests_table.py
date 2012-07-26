@@ -59,19 +59,21 @@ class TestTable(TestCase):
         table = Table(self.valid_schema)
         self.assertRaises(ValueError,
                           table.add_column,
-                          dict(id='age', type=str))
+                          'age',
+                          int
+                          )
 
     def test_add_column(self):
         Table = self.make_one()
         table = Table()
-        table.add_column(self.valid_schema[0])
-        table.add_column(self.valid_schema[1])
+        table.add_column(**self.valid_schema[0])
+        table.add_column(**self.valid_schema[1])
         self.assertEqual(table.schema['age'].id, "age")
         self.assertEqual(table.schema['name'].type, str)
         table.append(self.bob)
-        self.assertRaises(ValueError,
+        self.assertRaises(TypeError,
                           table.add_column,
-                          dict(id='height', type=int)
+                          'height'
                           )
 
     def test_insert_row_no_columns(self):

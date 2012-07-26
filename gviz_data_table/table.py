@@ -24,18 +24,18 @@ class Table(object):
         self.schema = OrderedDict()
         if schema is not None:
             for col in schema:
-                self.add_column(col)
+                self.add_column(**col)
         self.options = options
 
-    def add_column(self, description):
+    def add_column(self, id, type, label=None, options=None):
         """
         Add a new column
 
         Columns cannot be added to tables which already contain data.
         """
-        column = Column(**description)
-        if column.id in self.schema:
-            raise ValueError("Duplicate column ids '{0}'".format(column.id))
+        if id in self.schema:
+            raise ValueError("Duplicate column ids '{0}'".format(id))
+        column = Column(id, type, label, options)
         self.schema[column.id] = column
         if len(self.rows):
             raise ValueError("Cannot add columns to tables already containing data")

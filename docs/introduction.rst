@@ -62,9 +62,9 @@ This could be coded in Gviz Data Table like this:
 
       table = Table
       table.add_column('name', str, "Name")
-      table.add_column('salary', int, "Salary")
-      table.add(["Jim", 50])
-      table.add(["Bob", 80])
+      table.add_column(salary',int, "Salary")
+      table.append(["Jim", 50])
+      table.append(["Bob", 80])
 
 This can be encoded into JSON using the encoder:
 
