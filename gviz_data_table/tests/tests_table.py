@@ -76,6 +76,16 @@ class TestTable(TestCase):
                           'height'
                           )
 
+    def test_add_column_with_existing_data(self):
+        Table = self.make_one()
+        table = Table(self.valid_schema)
+        table.append(self.bob)
+        self.assertRaises(ValueError,
+                        table.add_column,
+                        'size', str
+                        )
+
+
     def test_insert_row_no_columns(self):
         Table = self.make_one()
         table = Table()
