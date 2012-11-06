@@ -41,11 +41,7 @@ class TestColumn(TestCase):
     def test_invalid_options(self):
         Column = self.make_one()
         col = Column(**self.minimal_schema.copy())
-        self.assertRaises(ValueError,
-                          setattr,
-                          col,
-                          "options",
-                          "Age")
+        self.assertRaises(ValueError, setattr, col, "options", "Age")
 
     def test_dictionary_interface(self):
         Column = self.make_one()
