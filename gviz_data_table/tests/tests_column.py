@@ -28,13 +28,15 @@ class TestColumn(TestCase):
         self.assertEqual(col.label, 'Age')
         self.assertEqual(col.options, {})
 
+    def test_validate_id(self):
+        Column = self.make_one()
+        col = Column(**self.minimal_schema.copy())
+        self.assertRaises(ValueError, setattr, col, "id", 1)
+
     def test_validate_type(self):
         Column = self.make_one()
-        schema = self.minimal_schema
-        schema['type'] = dict
-        self.assertRaises(ValueError,
-                          Column,
-                          **schema)
+        col = Column(**self.minimal_schema.copy())
+        self.assertRaises(ValueError, setattr, col, "type", dict)
 
     def test_invalid_options(self):
         Column = self.make_one()
