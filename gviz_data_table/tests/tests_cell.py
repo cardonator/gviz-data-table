@@ -38,13 +38,17 @@ class TestCell(TestCase):
         Cell = self.make_one()
         c = Cell(int, 1)
         self.assertRaises(
-            AssertionError,
-            c.options,
+            ValueError,
+            setattr,
+            c,
+            "options",
             1
         )
         self.assertRaises(
-            AssertionError,
-            c.options,
+            ValueError,
+            setattr,
+            c,
+            "options",
             [1, 2, 3]
         )
 

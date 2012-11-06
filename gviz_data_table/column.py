@@ -22,7 +22,8 @@ class Column(object):
 
     @type.setter
     def type(self, value):
-        assert value in valid_types, "{0} Type not supported".format(value)
+        if not value in valid_types:
+            raise ValueError("{0} Type not supported".format(value))
         self._type = value
 
     @property
@@ -31,7 +32,8 @@ class Column(object):
 
     @id.setter
     def id(self, value):
-        assert isinstance(value, basestring), "Column ids must be strings"
+        if not isinstance(value, basestring):
+            raise ValueError("Column ids must be strings")
         self._id = value
 
     @property
@@ -48,7 +50,8 @@ class Column(object):
 
     @options.setter
     def options(self, value):
-        assert isinstance(value, dict) or value is None, "Options must be a dictionary"
+        if value is not None and not isinstance(value, dict):
+            raise ValueError("Options must be a dictionary")
         self._options = value
 
     def __iter__(self):

@@ -33,8 +33,9 @@ class Cell(object):
         if value is None:
             return
         if not isinstance(value, self.type):
-            raise ValueError("{0} expected, {1} received".format(self.type,
-                                                                 type(value)))
+            raise ValueError(
+                "{0} expected, {1} received".format(self.type, type(value))
+            )
 
     @property
     def options(self):
@@ -42,7 +43,8 @@ class Cell(object):
 
     @options.setter
     def options(self, value):
-        assert isinstance(value, dict) or value is None, "Options must be a dictionary"
+        if value is not None and not isinstance(value, dict):
+            raise ValueError("Options must be a dictionary")
         self._options = value
 
     def __iter__(self):

@@ -49,7 +49,8 @@ class Table(object):
         """
         Ensure that options are a dictionary
         """
-        assert isinstance(options, dict) or options is None, "Options must be a dictionary"
+        if options is not None and not isinstance(options, dict):
+            raise ValueError("Options must be a dictionary")
         self._options = options
 
     def _append(self, row):
@@ -80,8 +81,8 @@ class Table(object):
         Tuples do not have to be complete but will be exhausted in order, i.e.
         you can't have just a value and options.
         """
-        assert len(row) == len(self.schema), \
-               "Row length does not match number of columns"
+        if len(row) != len(self.schema):
+            raise ValueError("Row length does not match number of columns")
         self.rows.append(self._append(row))
 
     def extend(self, rows):

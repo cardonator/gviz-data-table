@@ -30,13 +30,17 @@ class TestTable(TestCase):
         Table = self.make_one()
         table = Table()
         self.assertRaises(
-            AssertionError,
-            table.options,
+            ValueError,
+            setattr,
+            table,
+            "options",
             1
         )
         self.assertRaises(
-            AssertionError,
-            table.options,
+            ValueError,
+            setattr,
+            table,
+            "options",
             [1, 2, 3]
         )
 
@@ -89,7 +93,7 @@ class TestTable(TestCase):
     def test_insert_row_no_columns(self):
         Table = self.make_one()
         table = Table()
-        self.assertRaises(AssertionError,
+        self.assertRaises(ValueError,
                           table.append,
                           ('Bob', )
                           )
@@ -147,7 +151,7 @@ class TestTable(TestCase):
     def test_invalid_row(self):
         Table = self.make_one()
         table = Table(self.valid_schema)
-        self.assertRaises(AssertionError,
+        self.assertRaises(ValueError,
                           table.append,
                           [1, 2, 3]
                           )
