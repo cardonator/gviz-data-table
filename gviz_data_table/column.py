@@ -42,6 +42,8 @@ class Column(object):
 
     @label.setter
     def label(self, value):
+        if value is not None and not isinstance(value, basestring):
+            raise ValueError("Labels must be strings")
         self._label = value
 
     @property

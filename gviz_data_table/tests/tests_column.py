@@ -38,9 +38,15 @@ class TestColumn(TestCase):
         col = Column(**self.minimal_schema.copy())
         self.assertRaises(ValueError, setattr, col, "type", dict)
 
+    def test_validate_label(self):
+        Column = self.make_one()
+        col = Column(**self.minimal_schema.copy())
+        self.assertRaises(ValueError, setattr, col, "label", 4)
+
     def test_invalid_options(self):
         Column = self.make_one()
         col = Column(**self.minimal_schema.copy())
+        self.assertFalse(col.options)
         self.assertRaises(ValueError, setattr, col, "options", "Age")
 
     def test_dictionary_interface(self):
