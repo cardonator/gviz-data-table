@@ -56,11 +56,11 @@ Bob       80
 
 This could be coded in Gviz Data Table like this:
 
-   .. testcode::
+   .. code-block:: python
 
       from gviz_data_table import Table
 
-      table = Table
+      table = Table()
       table.add_column('name', str, "Name")
       table.add_column(salary',int, "Salary")
       table.append(["Jim", 50])
