@@ -1,0 +1,3 @@
+syntax: glob
+dist/gviz_data_table-0.9.0.tar.gz
+dist/gviz_data_table-0.9.1.tar.gz
