@@ -14,6 +14,7 @@ requires = ['setuptools']
 major, minor = sys.version_info[:2]
 if major == 2 and minor < 6:
     requires.append('simplejson')
+    requires.append('ordereddict')
 
 
 class PyTest(TestCommand):
