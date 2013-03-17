@@ -13,6 +13,8 @@ class Table(object):
     Rows are ordered dictionaries mirroring columns.
     """
 
+    __gviz__version = 0.6
+
     def __init__(self, schema=None, options=None):
         """Sample schema
         ({'id':'name', 'type':'string', 'label':'Name', 'options':{} },
@@ -98,3 +100,25 @@ class Table(object):
         for k, v in zip(js, [cols, rows, self.options]):
             if v is not None:
                 yield k, v
+
+    def encode(self):
+        """
+        Convenience method for encoding tables
+        """
+        from encoder import Encoder
+        e = Encoder()
+        return e.encode(self)
+
+    def source(self):
+        """
+        Convenience method for encoding a table as a static JSON data source.
+        This only wraps the table in the API.
+        """
+        from encoder import Encoder
+        e = Encoder()
+        d = {}
+        d['status'] = "OK"
+        d['reqId'] = 0
+        d['version'] = self.__gviz__version
+        d['table'] = self
+        return  'google.visualization.Query.setResponse(%s)' % e.encode(d)

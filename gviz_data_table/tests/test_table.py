@@ -108,12 +108,26 @@ def test_insert_rows():
     row = rows.pop()
     assert row['age'].value == 18
 
+
 def test_invalid_row():
     table = Table(valid_schema)
     with pytest.raises(ValueError):
         table.append([1, 2, 3])
 
+
 def test_dictionary_interface():
     table = Table(options={'foo':'bar'})
     expected = dict(rows=[], cols=[], p={'foo':'bar'})
     assert dict(table) == expected
+
+
+def test_encode():
+    table = Table()
+    expected = '{"rows": [], "cols": []}'
+    assert table.encode() == expected
+
+
+def test_source():
+    table = Table()
+    expected = 'google.visualization.Query.setResponse({"status": "OK", "table": {"rows": [], "cols": []}, "reqId": 0, "version": 0.6})'
+    assert table.source() == expected
