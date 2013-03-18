@@ -8,6 +8,7 @@ __author__ = "Charlie Clark"
 
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
+import os
 import sys
 
 requires = ['setuptools']
@@ -30,13 +31,16 @@ extra = dict(
     docs=requires + ['sphinx', 'repoze.sphinx.autointerface']
     )
 
+with open(os.path.join(here, 'README.rst')) as f:
+    README = f.read()
+with open(os.path.join(here, 'CHANGES.rst')) as f:
+    CHANGES = f.read()
+
 setup(
     name = "gviz_data_table",
     version = "1.0.0",
     description = "Python API for Google Visualization",
-    long_description = """
-    Date Table maps Python objects to the Google Visualization API
-""".strip(),
+    long_description = README + '\n\n' +  CHANGES,
     author = __author__,
     author_email = 'charlie.clark@clark-consulting.eu',
     license = "BSD",
