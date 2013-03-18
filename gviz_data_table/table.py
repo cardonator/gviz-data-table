@@ -100,7 +100,7 @@ class Table(object):
     def __iter__(self):
         """Dictionary interface for JSON encoding"""
         rows = [{"c":r.values()} for r in self.rows]
-        cols = self.schema.values()
+        cols = list(self.schema.values())
         js = ['cols', 'rows', 'p']
         for k, v in zip(js, [cols, rows, self.options]):
             if v is not None:
@@ -119,6 +119,7 @@ class Table(object):
         This only wraps the table in the API.
         """
         from .encoder import encode
+        d = OrderedDict()
         d = {}
         d['status'] = "OK"
         d['reqId'] = 0
