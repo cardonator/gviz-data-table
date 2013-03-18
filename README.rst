@@ -62,7 +62,7 @@ This could be coded in Gviz Data Table like this:
 
       table = Table()
       table.add_column('name', str, "Name")
-      table.add_column(salary',int, "Salary")
+      table.add_column(salary', int, "Salary")
       table.append(["Jim", 50])
       table.append(["Bob", 80])
 
@@ -70,9 +70,22 @@ This can be encoded into JSON using the encoder:
 
    .. code-block:: python
 
-      from gviz_data_table import encoder
+      from gviz_data_table import encode
 
-      encoder.encode(table)
+      encode(table)
+
+It can also be directly encoded
+
+   .. code-block:: python
+
+      table.encode()
+
+And also used as a static data source for asynchronous loading from Javascript
+
+   .. code-block:: python
+
+      table.source()
+
 
 Complete documentation including the API at
 http://gviz-data-table.readthedocs.org/en/latest/
