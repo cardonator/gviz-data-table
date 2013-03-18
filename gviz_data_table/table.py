@@ -1,7 +1,11 @@
-from collections import OrderedDict
+try:
+    from collections import OrderedDict
+except ImportError:
+    from ordereddict import OrderedDict
 
 from cell import Cell
 from column import Column
+import encoder
 
 
 class Table(object):
@@ -105,8 +109,7 @@ class Table(object):
         """
         Convenience method for encoding tables
         """
-        from encoder import Encoder
-        e = Encoder()
+        e = encoder.Encoder()
         return e.encode(self)
 
     def source(self):
@@ -114,8 +117,7 @@ class Table(object):
         Convenience method for encoding a table as a static JSON data source.
         This only wraps the table in the API.
         """
-        from encoder import Encoder
-        e = Encoder()
+        e = encoder.Encoder()
         d = {}
         d['status'] = "OK"
         d['reqId'] = 0

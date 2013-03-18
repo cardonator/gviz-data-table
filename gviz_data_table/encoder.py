@@ -1,10 +1,9 @@
 import datetime
 import json
 
-from cell import Cell
-from column import Column
-from table import Table
-
+import cell
+import column
+import table
 
 class Encoder(json.JSONEncoder):
     """
@@ -20,11 +19,11 @@ class Encoder(json.JSONEncoder):
                }
 
     def default(self, obj):
-        if isinstance(obj, Cell):
+        if isinstance(obj, cell.Cell):
             return dict(obj)
-        elif isinstance(obj, Column):
+        elif isinstance(obj, column.Column):
             return dict(obj)
-        elif isinstance(obj, Table):
+        elif isinstance(obj, table.Table):
             return dict(obj)
         t = type(obj)
         if t in self.formats:
