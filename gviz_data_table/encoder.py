@@ -1,9 +1,10 @@
 import datetime
 import json
 
-import cell
-import column
-import table
+from . import cell
+from . import column
+from . import table
+
 
 class Encoder(json.JSONEncoder):
     """
@@ -35,4 +36,7 @@ class Encoder(json.JSONEncoder):
 
         return json.JSONEncoder.default(self, obj)
 
-encoder = Encoder()
+
+def encode(obj):
+    e = Encoder()
+    return e.encode(obj)

@@ -3,9 +3,10 @@ try:
 except ImportError:
     from ordereddict import OrderedDict
 
-from cell import Cell
-from column import Column
-import encoder
+import sys
+
+from .cell import Cell
+from .column import Column
 
 
 class Table(object):
@@ -109,18 +110,18 @@ class Table(object):
         """
         Convenience method for encoding tables
         """
-        e = encoder.Encoder()
-        return e.encode(self)
+        from .encoder import encode
+        return encode(self)
 
     def source(self):
         """
         Convenience method for encoding a table as a static JSON data source.
         This only wraps the table in the API.
         """
-        e = encoder.Encoder()
+        from .encoder import encode
         d = {}
         d['status'] = "OK"
         d['reqId'] = 0
         d['version'] = self.__gviz__version
         d['table'] = self
-        return  'google.visualization.Query.setResponse(%s)' % e.encode(d)
+        return  'google.visualization.Query.setResponse(%s)' % encode(d)
