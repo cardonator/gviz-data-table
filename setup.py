@@ -11,9 +11,7 @@ from setuptools.command.test import test as TestCommand
 import sys
 
 requires = ['setuptools']
-major, minor = sys.version_info[:2]
-if major == 2 and minor < 6:
-    requires.append('simplejson')
+if sys.version_info < (2, 7):
     requires.append('ordereddict')
 
 
