@@ -15,6 +15,13 @@ schema_missing_id = (
 bob = (18, 'Bob')
 sally = (20, 'Sally')
 
+
+def test_conditional():
+    import sys
+    if sys.version_info < (2, 7):
+        with pytest.raises(ImportError):
+            from collections import OrderedDict
+
 def test_constructor():
     table = Table()
     assert list(table.schema.keys()) == []

@@ -5,6 +5,13 @@ minimal_schema = dict(id='age', type=int)
 valid_schema = {'id':'age', 'type':int, 'label':'Age', 'options':{}}
 
 
+def test_conditional():
+    import sys
+    if sys.version_info > (3, 0):
+        with pytest.raises(NameError):
+            s = basestring
+            s = unicode
+
 def test_constructor():
     col = Column(**minimal_schema)
     assert col.id == 'age'
