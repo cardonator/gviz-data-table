@@ -1,5 +1,11 @@
 import datetime
 
+try:
+    a = basestring
+except NameError:
+    basestring = str
+    unicode = str
+
 valid_types = {str:'string', unicode:'string', int:'number', float:'number',
                bool:'boolean', datetime.date:'date', datetime.datetime:'datetime',
                datetime.time:'timeofday'}
