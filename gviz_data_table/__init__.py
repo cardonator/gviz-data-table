@@ -8,7 +8,7 @@ import sys
 import json
 
 # hack float formatting in Python 2.6
-if sys.version < (2, 7):
+if sys.version_info < (2, 7):
     json.encoder.FLOAT_REPR = lambda o: format(o, '.15g')
 
 #convenience imports
