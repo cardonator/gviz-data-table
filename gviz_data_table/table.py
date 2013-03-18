@@ -119,7 +119,6 @@ class Table(object):
         This only wraps the table in the API.
         """
         from .encoder import encode
-        d = OrderedDict()
         d = {}
         d['status'] = "OK"
         d['reqId'] = 0

@@ -1,3 +1,4 @@
+import json
 import pytest
 from gviz_data_table.table import Table
 
@@ -16,7 +17,7 @@ sally = (20, 'Sally')
 
 def test_constructor():
     table = Table()
-    assert table.schema.keys() == []
+    assert list(table.schema.keys()) == []
     assert table.rows == []
 
 def test_invalid_options():
@@ -123,11 +124,25 @@ def test_dictionary_interface():
 
 def test_encode():
     table = Table()
-    expected = '{"rows": [], "cols": []}'
-    assert table.encode() == expected
+    expected = {"rows": [], "cols": []}
+    result = table.encode()
+    assert json.loads(result) == expected
 
 
 def test_source():
     table = Table()
-    expected = 'google.visualization.Query.setResponse({"status": "OK", "table": {"rows": [], "cols": []}, "reqId": 0, "version": 0.6})'
-    assert table.source() == expected
+    google = DummyGoogleObject()
+    google.visualization = DummyGoogleObject()
+    google.visualization.Query = DummyGoogleObject()
+    result = eval(table.source())
+    expected = {"status": "OK", "table": {"rows": [], "cols": []}, "reqId": 0, "version": 0.6}
+    assert result == expected
+
+
+class DummyGoogleObject(object):
+    """
+    Just allows namespaces to mimic the Google API
+    """
+
+    def setResponse(self, arg):
+        return arg
