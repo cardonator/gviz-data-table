@@ -70,6 +70,18 @@ This can be encoded into JSON using the encoder:
 
    .. code-block:: python
 
-      from gviz_data_table import encoder
+      from gviz_data_table import encode
 
-      encoder.encode(table)
+      encode(table)
+
+Or by calling the .encode() method of the table:
+
+   .. code-block:: python
+
+      table.encode()
+
+And also used as a static data source for asynchronous loading from Javascript
+
+   .. code-block:: python
+
+      table.source()
