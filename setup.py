@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright (C) 2012 Charlie Clark
+# Copyright (C) 2012 - 2013 Charlie Clark
 
 """Python utility module Google Visualization Python API."""
 
