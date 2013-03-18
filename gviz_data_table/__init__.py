@@ -4,7 +4,13 @@ Google Visualisation for Python
 Convert Python data structures to JSON suitable for the Google Visualisation
 Library
 """
-#convenience imports
+import sys
+import json
 
-from table import Table
-from encoder import encoder
+# hack float formatting in Python 2.6
+if sys.version < (2, 7):
+    json.encoder.FLOAT_REPR = lambda o: format(o, '.15g')
+
+#convenience imports
+from .table import Table
+from .encoder import encode
