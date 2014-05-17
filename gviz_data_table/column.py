@@ -8,7 +8,7 @@ except NameError:
 
 valid_types = {str:'string', unicode:'string', int:'number', float:'number',
                bool:'boolean', datetime.date:'date', datetime.datetime:'datetime',
-               datetime.time:'timeofday'}
+               datetime.time:'timeofday', long:'number'}
 
 
 class Column(object):
