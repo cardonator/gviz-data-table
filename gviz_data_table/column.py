@@ -6,6 +6,11 @@ except NameError:
     basestring = str
     unicode = str
 
+try:
+    a = long
+except NameError:
+    long = type('long', (int,), {})
+
 valid_types = {str:'string', unicode:'string', int:'number', float:'number',
                bool:'boolean', datetime.date:'date', datetime.datetime:'datetime',
                datetime.time:'timeofday', long:'number'}
