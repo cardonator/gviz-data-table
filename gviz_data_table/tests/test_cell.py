@@ -1,6 +1,7 @@
 import sys
 import pytest
 from gviz_data_table.cell import Cell
+from gviz_data_table.column import long
 
 
 def test_valid_data():
@@ -12,14 +13,10 @@ def test_valid_data():
     assert c.value == 'a'
     assert c.type == str
 
-    try:
-        long
-    except NameError:
-        pass
-    else:
-        longnumber = sys.maxsize + 1
-        c = Cell(long, longnumber)
-        assert c.value == longnumber
+    longnumber = sys.maxsize + 1
+    c = Cell(long, longnumber)
+    assert c.value == longnumber
+    assert c.type == long
 
 def test_empty_cell():
     c = Cell(int, None)
