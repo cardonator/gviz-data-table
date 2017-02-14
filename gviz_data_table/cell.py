@@ -53,5 +53,5 @@ class Cell(object):
         js = ['v', 'f', 'p']
         for key, attr in zip(js, python):
             value = getattr(self, attr)
-            if value:
+            if value is not None:
                 yield key, value

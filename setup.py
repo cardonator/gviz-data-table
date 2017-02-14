@@ -39,7 +39,7 @@ with open(os.path.join(here, 'CHANGES.rst')) as f:
 
 setup(
     name = "gviz_data_table",
-    version = "1.0.2",
+    version = "1.0.3",
     description = "Python API for Google Visualization",
     long_description = README + '\n\n' +  CHANGES,
     author = __author__,

@@ -49,3 +49,8 @@ def test_dictionary_interface():
     c = Cell(int, 1, "Number", {'foo':'bar'})
     expected = dict(v=1, f="Number", p={'foo':'bar'})
     assert dict(c) == expected
+
+def test_dictionary_valid_zero():
+    c = Cell(int, 0, "Number")
+    expected = dict(v=0, f="Number")
+    assert dict(c) == expected

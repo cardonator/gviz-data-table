@@ -62,7 +62,7 @@ This could be coded in Gviz Data Table like this:
 
       table = Table()
       table.add_column('name', str, "Name")
-      table.add_column(salary', int, "Salary")
+      table.add_column('salary', int, "Salary")
       table.append(["Jim", 50])
       table.append(["Bob", 80])
 
