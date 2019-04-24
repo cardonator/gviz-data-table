@@ -99,7 +99,7 @@ class Table(object):
 
     def __iter__(self):
         """Dictionary interface for JSON encoding"""
-        rows = [{"c":r.values()} for r in self.rows]
+        rows = [{"c":list(r.values())} for r in self.rows]
         cols = list(self.schema.values())
         js = ['cols', 'rows', 'p']
         for k, v in zip(js, [cols, rows, self.options]):
